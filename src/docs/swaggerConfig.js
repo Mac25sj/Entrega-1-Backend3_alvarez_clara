@@ -173,5 +173,5 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.js'] // Ajustá según tu estructura
+  apis: ['./src/routes/*.js'] 
 };

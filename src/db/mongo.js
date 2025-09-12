@@ -9,9 +9,9 @@ export const connectMongo = async () => {
     await mongoose.connect(config.MONGO_URL, {
       dbName: config.DB_NAME,
     });
-    console.log(`✅ Conectado a MongoDB: ${config.DB_NAME}`);
+    console.log(` Conectado a MongoDB: ${config.DB_NAME}`);
   } catch (error) {
-    console.error('❌ Error al conectar con MongoDB:', error);
+    console.error(' Error al conectar con MongoDB:', error);
     process.exit(1);
   }
 };

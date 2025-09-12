@@ -14,10 +14,8 @@ import mockRouter from './routes/mock.router.js';
 const app = express();
 const PORT = config.PORT;
 
-// Conexión a MongoDB
 connectMongo();
 
-// Swagger config embebida
 const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
@@ -66,7 +64,7 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.js'] // Asegurate de tener comentarios JSDoc en tus rutas
+  apis: ['./src/routes/*.js'] 
 };
 
 const swaggerSpec = swaggerJSDoc(swaggerOptions);
@@ -82,10 +80,8 @@ app.use('/api/adoptions', adoptionsRouter);
 app.use('/api/sessions', sessionsRouter);
 app.use('/api/mocks', mockRouter);
 
-// Documentación Swagger
 app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-// Inicio del servidor
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
