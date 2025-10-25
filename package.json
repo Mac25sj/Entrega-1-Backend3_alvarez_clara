@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "mocha test/supertest.test.js --exit"
+    "test": "mocha \"test/**/*.test.js\" --exit"
   },
   "keywords": [],
   "author": "",
@@ -26,8 +26,8 @@
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
-    "chai": "^4.3.7",
-    "mocha": "^10.1.0",
+    "chai": "^4.5.0",
+    "mocha": "^10.8.2",
     "nodemon": "^3.1.10"
   }
 }

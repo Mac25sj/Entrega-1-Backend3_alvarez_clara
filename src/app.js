@@ -1,20 +1,20 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import swaggerJSDoc from 'swagger-jsdoc';
-import swaggerUI from 'swagger-ui-express';
-import config from './config/config.js';
-import { connectMongo } from './db/mongo.js';
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUI from 'swagger-ui-express'
+import config from './config/config.js'
+import { connectMongo } from './db/mongo.js'
 
-import usersRouter from './routes/users.router.js';
-import petsRouter from './routes/pets.router.js';
-import adoptionsRouter from './routes/adoption.router.js';
-import sessionsRouter from './routes/sessions.router.js';
-import mockRouter from './routes/mock.router.js';
+import usersRouter from './routes/users.router.js'
+import petsRouter from './routes/pets.router.js'
+import adoptionsRouter from './routes/adoption.router.js'
+import sessionsRouter from './routes/sessions.router.js'
+import mockRouter from './routes/mock.router.js'
 
-const app = express();
-const PORT = config.PORT;
+const app = express()
+const PORT = config.PORT
 
-connectMongo();
+connectMongo()
 
 const swaggerOptions = {
   definition: {
@@ -64,24 +64,28 @@ const swaggerOptions = {
       }
     }
   },
-  apis: ['./src/routes/*.js'] 
-};
+  apis: ['./src/routes/*.js']
+}
 
-const swaggerSpec = swaggerJSDoc(swaggerOptions);
+const swaggerSpec = swaggerJSDoc(swaggerOptions)
 
-// Middlewares
-app.use(express.json());
-app.use(cookieParser());
+app.use(express.json())
+app.use(cookieParser())
 
-// Rutas
-app.use('/api/users', usersRouter);
-app.use('/api/pets', petsRouter);
-app.use('/api/adoptions', adoptionsRouter);
-app.use('/api/sessions', sessionsRouter);
-app.use('/api/mocks', mockRouter);
+app.get('/', (req, res) => {
+  res.send('Servidor AdoptMe funcionando correctamente - Matías Álvarez - Backend 3')
+})
 
-app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/api/users', usersRouter)
+app.use('/api/pets', petsRouter)
+app.use('/api/adoptions', adoptionsRouter)
+app.use('/api/sessions', sessionsRouter)
+app.use('/api/mocks', mockRouter)
+
+app.use('/api/docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-});
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`)
+})
+
+export default app
